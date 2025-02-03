@@ -1,0 +1,19 @@
+name: Mark stale issues and PRs
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Läuft täglich um Mitternacht UTC
+  workflow_dispatch:  # Erlaubt das manuelle Starten
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: 30
+          days-before-close: 7
+          stale-issue-message: "Dieses Issue wurde seit 30 Tagen nicht bearbeitet und wird bald geschlossen."
+          stale-pr-message: "Dieser PR wurde seit 30 Tagen nicht bearbeitet und wird bald geschlossen."
+          close-issue-message: "Dieses Issue wurde automatisch geschlossen."
+          close-pr-message: "Dieser PR wurde automatisch geschlossen."
